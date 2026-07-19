@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Українські прізвища</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Українські прізвища та їхній розподіл</h1>
+        <nav>
+            <a href="#search">Пошук</a>
+            <a href="#map">Карта</a>
+            <a href="#info">Інформація</a>
+        </nav>
+    </header>
+
+    <section class="search-section" id="search">
+        <div class="search-card">
+            <label class="search-label" for="surnameInput">Введіть українське прізвище</label>
+            <div class="search-controls">
+                <input id="surnameInput" type="text" placeholder="Наприклад: Шевченко" autocomplete="off">
+                <button id="searchBtn" type="button">Пошук</button>
+            </div>
+            <p class="search-hint">Натисніть Enter або кнопку, щоб показати розподіл по регіонах.</p>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="map-block" id="map">
+            <h2 id="region-name">Наведіть курсор на область або введіть прізвище</h2>
+            <div class="map-wrap">
+                <object id="ukraineMap" type="image/svg+xml" data="images/ukraine.svg" aria-label="Карта України"></object>
+                <div id="tooltip"></div>
+            </div>
+        </div>
+
+        <aside class="info-block" id="info">
+            <div id="infoContent">
+                <p class="info-placeholder">Сюди з’явиться інформація про прізвище, його походження та розподіл по регіонах.</p>
+            </div>
+        </aside>
+    </section>
+
+    <script src="data/surnames-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
