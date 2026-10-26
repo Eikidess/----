@@ -1,20 +1,141 @@
+:root {
+    --bg-grad-start: #f7fbff;
+    --bg-grad-end: #eef6ff;
+    --text-primary: #10253f;
+    --text-secondary: #5c6b7a;
+    --heading-strong: #0f4c81;
+    --heading-soft: #163b63;
+
+    --header-grad-start: #0f4c81;
+    --header-grad-end: #3b82f6;
+    --header-text: #ffffff;
+    --header-shadow: rgba(15, 76, 129, 0.18);
+    --header-icon-border: rgba(255, 255, 255, 0.35);
+    --header-icon-bg: rgba(255, 255, 255, 0.12);
+    --header-icon-bg-hover: rgba(255, 255, 255, 0.22);
+
+    --nav-link-color: #eff6ff;
+    --nav-link-hover-bg: rgba(255, 255, 255, 0.15);
+
+    --card-bg: #ffffff;
+    --card-shadow: rgba(15, 76, 129, 0.1);
+    --search-card-shadow: rgba(15, 76, 129, 0.12);
+
+    --input-bg: #ffffff;
+    --input-border: #cddbf3;
+    --input-focus-border: #3b82f6;
+    --input-focus-shadow: rgba(59, 130, 246, 0.15);
+    --input-placeholder: #93a1b3;
+
+    --button-grad-start: #2563eb;
+    --button-grad-end: #38bdf8;
+    --button-text: #ffffff;
+    --button-shadow-hover: rgba(37, 99, 235, 0.2);
+
+    --insight-bg: #f2f8ff;
+    --insight-text: #1e4d7c;
+}
+
+:root[data-theme="dark"] {
+    --bg-grad-start: #0a111f;
+    --bg-grad-end: #101c30;
+    --text-primary: #dbe6f5;
+    --text-secondary: #93a4bd;
+    --heading-strong: #8fc4ff;
+    --heading-soft: #bcdcff;
+
+    --header-grad-start: #071a2e;
+    --header-grad-end: #14356b;
+    --header-text: #f2f8ff;
+    --header-shadow: rgba(0, 0, 0, 0.45);
+    --header-icon-border: rgba(255, 255, 255, 0.25);
+    --header-icon-bg: rgba(255, 255, 255, 0.08);
+    --header-icon-bg-hover: rgba(255, 255, 255, 0.16);
+
+    --nav-link-color: #dbe9ff;
+    --nav-link-hover-bg: rgba(255, 255, 255, 0.08);
+
+    --card-bg: #16233a;
+    --card-shadow: rgba(0, 0, 0, 0.35);
+    --search-card-shadow: rgba(0, 0, 0, 0.35);
+
+    --input-bg: #0f1b2d;
+    --input-border: #2c3f5c;
+    --input-focus-border: #3b82f6;
+    --input-focus-shadow: rgba(59, 130, 246, 0.25);
+    --input-placeholder: #6b7c95;
+
+    --button-grad-start: #2563eb;
+    --button-grad-end: #38bdf8;
+    --button-text: #ffffff;
+    --button-shadow-hover: rgba(56, 189, 248, 0.35);
+
+    --insight-bg: #1c2e47;
+    --insight-text: #a8d0ff;
+}
+
 body {
     margin: 0;
     font-family: "Segoe UI", Arial, sans-serif;
-    background: linear-gradient(135deg, #f7fbff 0%, #eef6ff 100%);
-    color: #10253f;
+    background: linear-gradient(135deg, var(--bg-grad-start) 0%, var(--bg-grad-end) 100%);
+    color: var(--text-primary);
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 header {
-    background: linear-gradient(90deg, #0f4c81 0%, #3b82f6 100%);
-    color: #fff;
+    background: linear-gradient(90deg, var(--header-grad-start) 0%, var(--header-grad-end) 100%);
+    color: var(--header-text);
     padding: 24px 32px;
-    box-shadow: 0 8px 25px rgba(15, 76, 129, 0.18);
+    box-shadow: 0 8px 25px var(--header-shadow);
+    transition: background 0.3s ease;
+}
+
+.header-bar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
 }
 
 h1 {
     margin: 0;
     font-size: 2rem;
+}
+
+.theme-toggle {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--header-icon-border);
+    background: var(--header-icon-bg);
+    color: var(--header-text);
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+    background: var(--header-icon-bg-hover);
+    transform: translateY(-1px);
+}
+
+.theme-toggle svg {
+    display: block;
+}
+
+.theme-toggle .icon-moon {
+    display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-sun {
+    display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-moon {
+    display: block;
 }
 
 nav {
@@ -26,7 +147,7 @@ nav {
 
 nav a {
     text-decoration: none;
-    color: #eff6ff;
+    color: var(--nav-link-color);
     font-weight: 600;
     padding: 6px 10px;
     border-radius: 999px;
@@ -34,25 +155,43 @@ nav a {
 }
 
 nav a:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: var(--nav-link-hover-bg);
+}
+
+nav a.active {
+    background: var(--nav-link-hover-bg);
 }
 
 .search-section {
     padding: 24px 32px 8px;
 }
 
-.search-card {
-    background: white;
+.history-section {
+    padding: 24px 32px 32px;
+}
+
+.history-card {
+    background: var(--card-bg);
     border-radius: 16px;
     padding: 22px;
-    box-shadow: 0 10px 30px rgba(15, 76, 129, 0.12);
+    box-shadow: 0 10px 30px var(--search-card-shadow);
+    min-height: 300px;
+    transition: background 0.3s ease;
+}
+
+.search-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 10px 30px var(--search-card-shadow);
+    transition: background 0.3s ease;
 }
 
 .search-label {
     display: block;
     font-weight: 700;
     margin-bottom: 10px;
-    color: #163b63;
+    color: var(--heading-soft);
 }
 
 .search-controls {
@@ -61,41 +200,90 @@ nav a:hover {
     gap: 10px;
 }
 
-.search-section input {
+.search-input-wrap {
+    position: relative;
     flex: 1;
     min-width: 260px;
+}
+
+.search-section input {
+    width: 100%;
+    box-sizing: border-box;
     padding: 12px 14px;
-    border: 1px solid #cddbf3;
+    border: 1px solid var(--input-border);
     border-radius: 999px;
     font-size: 1rem;
     outline: none;
+    background: var(--input-bg);
+    color: var(--text-primary);
+    transition: background 0.3s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.suggestions-list {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 6px;
+    list-style: none;
+    background: var(--card-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 14px;
+    box-shadow: 0 12px 30px var(--card-shadow);
+    max-height: 240px;
+    overflow-y: auto;
+    z-index: 20;
+}
+
+.suggestions-list[hidden] {
+    display: none;
+}
+
+.suggestions-list li {
+    padding: 9px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text-primary);
+    transition: background 0.15s ease;
+}
+
+.suggestions-list li:hover {
+    background: var(--insight-bg);
+}
+
+.search-section input::placeholder {
+    color: var(--input-placeholder);
 }
 
 .search-section input:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    border-color: var(--input-focus-border);
+    box-shadow: 0 0 0 3px var(--input-focus-shadow);
 }
 
-.search-section button {
-    padding: 12px 22px;
+.search-section button#searchBtn {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     border: none;
-    border-radius: 999px;
-    background: linear-gradient(90deg, #2563eb 0%, #38bdf8 100%);
-    color: white;
-    font-weight: 700;
+    border-radius: 50%;
+    background: linear-gradient(90deg, var(--button-grad-start) 0%, var(--button-grad-end) 100%);
+    color: var(--button-text);
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.search-section button:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+.search-section button#searchBtn svg {
+    display: block;
 }
 
-.search-hint {
-    margin: 10px 0 0;
-    color: #5c6b7a;
-    font-size: 0.95rem;
+.search-section button#searchBtn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px var(--button-shadow-hover);
 }
 
 .content {
@@ -107,31 +295,38 @@ nav a:hover {
 
 .map-block {
     flex: 2;
-    min-height: 500px;
-    background: white;
+    min-width: 340px;
+    height: calc(100vh - 60px);
+    min-height: 520px;
+    background: var(--card-bg);
     border-radius: 18px;
     padding: 20px;
-    box-shadow: 0 12px 35px rgba(15, 76, 129, 0.1);
+    box-shadow: 0 12px 35px var(--card-shadow);
     position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.3s ease;
 }
 
 .info-block {
     flex: 1;
     min-width: 280px;
-    background: white;
+    background: var(--card-bg);
     border-radius: 18px;
     padding: 20px;
-    box-shadow: 0 12px 35px rgba(15, 76, 129, 0.1);
+    box-shadow: 0 12px 35px var(--card-shadow);
+    transition: background 0.3s ease;
 }
 
 .map-wrap {
     position: relative;
+    flex: 1;
+    min-height: 0;
 }
 
 #ukraineMap {
     width: 100%;
-    aspect-ratio: 612 / 408;
-    height: auto;
+    height: 100%;
     display: block;
     border: 0;
 }
@@ -140,71 +335,40 @@ nav a:hover {
     margin: 0 0 12px;
     font-size: 1.1rem;
     font-weight: 700;
-    color: #163b63;
+    color: var(--heading-soft);
 }
 
 #info h2 {
     margin-top: 0;
-    color: #0f4c81;
+    color: var(--heading-strong);
 }
 
 .info-placeholder {
-    color: #5c6b7a;
+    color: var(--text-secondary);
     line-height: 1.6;
+}
+
+.info-fact {
+    font-weight: 700;
+    text-align: center;
+}
+
+.region-surname-list {
+    margin: 8px 0 0;
+    padding-left: 20px;
+    color: var(--text-primary);
+}
+
+.region-surname-list li {
+    margin-bottom: 4px;
 }
 
 .region-insight {
     margin-top: 12px;
     padding: 10px 12px;
     border-radius: 12px;
-    background: #f2f8ff;
-    color: #1e4d7c;
-}
-
-svg path {
-    fill: #e8edf5;
-    stroke: #6f7d8f;
-    stroke-width: 1;
-    cursor: pointer;
-    transition: fill 0.2s ease;
-}
-
-svg path:hover {
-    fill: #7ec8ff;
-}
-
-svg path.region-low {
-    fill: #ffe8a3;
-}
-
-svg path.region-medium {
-    fill: #ffb347;
-}
-
-svg path.region-high {
-    fill: #ff7f50;
-}
-
-svg path.hovered {
-    fill: #3b82f6 !important;
-}
-
-svg path.active-region {
-    stroke-width: 2.2;
-    stroke: #10253f;
-}
-
-#tooltip {
-    position: absolute;
-    display: none;
-    padding: 8px 12px;
-    background: rgba(255, 255, 255, 0.97);
-    border: 1px solid #d5e6f7;
-    border-radius: 10px;
-    box-shadow: 0 8px 20px rgba(15, 76, 129, 0.16);
-    font-size: 14px;
-    pointer-events: none;
-    z-index: 999;
+    background: var(--insight-bg);
+    color: var(--insight-text);
 }
 
 @media (max-width: 900px) {
@@ -219,6 +383,11 @@ svg path.active-region {
         flex-direction: column;
     }
 
+    .map-block {
+        height: 70vh;
+        min-width: unset;
+    }
+
     .info-block {
         min-width: unset;
     }
@@ -229,12 +398,8 @@ svg path.active-region {
         font-size: 1.55rem;
     }
 
-    .search-section input,
-    .search-section button {
-        width: 100%;
-    }
-
     .search-section input {
+        width: 100%;
         min-width: 0;
     }
 }
