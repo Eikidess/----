@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Порівняння — Українські прізвища</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="story.css">
+    <script>
+        (function () {
+            var stored = localStorage.getItem("site-theme");
+            var theme = stored || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+            document.documentElement.setAttribute("data-theme", theme);
+        })();
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header-bar">
+            <h1>Українські прізвища та їхній розподіл</h1>
+            <button id="themeToggle" class="theme-toggle" type="button" aria-label="Перемкнути тему оформлення">
+                <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </div>
+        <nav>
+            <a href="index.html#search">Пошук</a>
+            <a href="index.html#map">Карта</a>
+            <a href="history.html">Історія</a>
+            <a href="compare.html" class="active">Порівняння</a>
+        </nav>
+    </header>
+
+    <main class="story-wrap" id="compareRoot">
+        <section class="story-hero">
+            <h2>Ліцей і Україна: чи схожі наші прізвища?</h2>
+            <p>У практичній частині дослідження ми розібрали прізвища учнів 10-А, 10-Б, 10-В і 10-Г класів. Тепер порівняємо їх із 100 найпоширенішими прізвищами України за даними сайту «Рідні».</p>
+            <div class="hero-badges">
+                <span class="hero-badge">4 класи ліцею</span>
+                <span class="hero-badge">топ-100 України</span>
+                <span class="hero-badge">клікабельні діаграми</span>
+            </div>
+        </section>
+
+        <section class="story-block reveal">
+            <div class="kpi-grid chart" id="kpis"></div>
+        </section>
+
+        <section class="story-block reveal">
+            <div class="block-head"><h2>Звідки походять прізвища?</h2></div>
+            <p class="block-lead">Порівнюємо частки чотирьох груп за походженням: від особових імен, від занять і професій, від прізвиськ і рис, від місцевості та етносу.</p>
+            <div class="legend" id="catLegend"></div>
+            <div class="chart" id="catChart"></div>
+            <p class="small-note">Для України групи «від прізвиськ» об’єднують прізвища-характеристики й апелятиви, а «від місцевості та етносу» — етноніми й мікроетноніми (категорії «Рідні»).</p>
+        </section>
+
+        <section class="story-block reveal">
+            <div class="block-head"><h2>Клас за класом</h2></div>
+            <p class="block-lead">Кожен рядок — один клас. Клікніть на кольоровий сегмент, щоб побачити прізвища, або на пункт легенди, щоб виділити групу в усіх класах.</p>
+            <div class="legend" id="stackLegend"></div>
+            <div class="chart" id="stackChart"></div>
+            <div class="names-panel" id="namesPanel"><p>Оберіть сегмент діаграми.</p></div>
+        </section>
+
+        <section class="story-block reveal">
+            <div class="block-head"><h2>Українське чи іншомовне?</h2></div>
+            <p class="block-lead">Окрім прізвищ українського походження, в ліцеї є й такі, що утворені за іншими мовними моделями — це відбиток міграцій та міжкультурних контактів.</p>
+            <div class="donut-wrap chart" id="donutWrap"></div>
+        </section>
+
+        <section class="story-block reveal">
+            <div class="block-head"><h2>Закінчення прізвищ</h2></div>
+            <p class="block-lead">Які суфікси переважають? Для ліцею визначаємо закінчення за написанням прізвищ українського походження, для України — за базою топ-100.</p>
+            <div class="legend" id="sufLegend"></div>
+            <div class="chart" id="sufChart"></div>
+        </section>
+
+        <section class="story-block reveal">
+            <div class="block-head"><h2>Спільні прізвища</h2></div>
+            <p class="block-lead" id="matchLead"></p>
+            <div class="match-cloud" id="matchCloud"></div>
+        </section>
+
+        <section class="story-block reveal">
+            <div class="block-head"><h2>Що ми бачимо</h2></div>
+            <ul class="insights" id="insights"></ul>
+            <p class="note" id="methodNote"></p>
+        </section>
+    </main>
+
+    <script src="data/surnames-data.js"></script>
+    <script src="data/lyceum-data.js"></script>
+    <script src="theme.js"></script>
+    <script src="compare.js"></script>
+</body>
+</html>

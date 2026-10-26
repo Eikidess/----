@@ -5,14 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Українські прізвища</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        (function () {
+            var stored = localStorage.getItem("site-theme");
+            var theme = stored || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+            document.documentElement.setAttribute("data-theme", theme);
+        })();
+    </script>
 </head>
 <body>
     <header>
-        <h1>Українські прізвища та їхній розподіл</h1>
+        <div class="header-bar">
+            <h1>Українські прізвища та їхній розподіл</h1>
+            <button id="themeToggle" class="theme-toggle" type="button" aria-label="Перемкнути тему оформлення">
+                <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </div>
         <nav>
             <a href="#search">Пошук</a>
             <a href="#map">Карта</a>
-            <a href="#info">Інформація</a>
+            <a href="history.html">Історія</a>
+            <a href="compare.html">Порівняння</a>
         </nav>
     </header>
 
@@ -20,10 +46,17 @@
         <div class="search-card">
             <label class="search-label" for="surnameInput">Введіть українське прізвище</label>
             <div class="search-controls">
-                <input id="surnameInput" type="text" placeholder="Наприклад: Шевченко" autocomplete="off">
-                <button id="searchBtn" type="button">Пошук</button>
+                <div class="search-input-wrap">
+                    <input id="surnameInput" type="text" placeholder="Введіть прізвище" autocomplete="off">
+                    <ul id="suggestions" class="suggestions-list" role="listbox" hidden></ul>
+                </div>
+                <button id="searchBtn" type="button" aria-label="Пошук">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
             </div>
-            <p class="search-hint">Натисніть Enter або кнопку, щоб показати розподіл по регіонах.</p>
         </div>
     </section>
 
@@ -32,13 +65,12 @@
             <h2 id="region-name">Наведіть курсор на область або введіть прізвище</h2>
             <div class="map-wrap">
                 <object id="ukraineMap" type="image/svg+xml" data="images/ukraine.svg" aria-label="Карта України"></object>
-                <div id="tooltip"></div>
             </div>
         </div>
 
         <aside class="info-block" id="info">
             <div id="infoContent">
-                <p class="info-placeholder">Сюди з’явиться інформація про прізвище, його походження та розподіл по регіонах.</p>
+                <p class="info-placeholder"></p>
             </div>
         </aside>
     </section>

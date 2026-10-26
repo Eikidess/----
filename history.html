@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Історія — Українські прізвища</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="story.css">
+    <script>
+        (function () {
+            var stored = localStorage.getItem("site-theme");
+            var theme = stored || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+            document.documentElement.setAttribute("data-theme", theme);
+        })();
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header-bar">
+            <h1>Українські прізвища та їхній розподіл</h1>
+            <button id="themeToggle" class="theme-toggle" type="button" aria-label="Перемкнути тему оформлення">
+                <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </div>
+        <nav>
+            <a href="index.html#search">Пошук</a>
+            <a href="index.html#map">Карта</a>
+            <a href="history.html" class="active">Історія</a>
+            <a href="compare.html">Порівняння</a>
+        </nav>
+    </header>
+
+    <main class="story-wrap">
+        <section class="story-hero">
+            <h2>Звідки взялися прізвища?</h2>
+            <p>Сім коротких кроків — від давніх слов’янських імен до сучасних прізвищ. Перевертайте картки, рухайте повзунок, збирайте прізвище з частин і перевірте себе наприкінці.</p>
+            <div class="hero-badges">
+                <span class="hero-badge">7 блоків</span>
+                <span class="hero-badge">інтерактивна карта суфіксів</span>
+                <span class="hero-badge">міні-вікторина</span>
+            </div>
+        </section>
+
+        <nav class="step-nav" id="stepNav" aria-label="Блоки сторінки">
+            <a href="#b1" data-step="b1"><b>1</b><span>Імена</span></a>
+            <a href="#b2" data-step="b2"><b>2</b><span>Прізвища</span></a>
+            <a href="#b3" data-step="b3"><b>3</b><span>Конструктор</span></a>
+            <a href="#b4" data-step="b4"><b>4</b><span>Карта</span></a>
+            <a href="#b5" data-step="b5"><b>5</b><span>Епохи</span></a>
+            <a href="#b6" data-step="b6"><b>6</b><span>Образи</span></a>
+            <a href="#b7" data-step="b7"><b>7</b><span>Сучасність</span></a>
+        </nav>
+
+        <!-- 1 -->
+        <article class="story-block reveal" id="b1">
+            <div class="block-head"><span class="block-num">1</span><h2>Імена слов’ян</h2></div>
+            <p class="block-kicker">З чого складалися найдавніші імена?</p>
+            <p class="block-lead">До прийняття християнства слов’яни створювали імена з рідної мови. Вони мали магічний або побутовий характер і відображали побажання батьків чи важливі риси новонародженого. Торкніться картки — вона перевернеться.</p>
+            <div class="flip-grid" id="nameCards"></div>
+
+            <h3 class="subhead">988 рік: нові імена</h3>
+            <p class="block-lead">Після того як Київська Русь прийняла християнство, почали активно поширюватися імена з інших мов. Оберіть мову:</p>
+            <div id="christianTabs"></div>
+            <p class="note">У цей час з’являється традиція подвійних імен: у побуті людина могла бути Добринею, а в церковному житті — Петром.</p>
+
+            <h3 class="subhead">Навіщо нам імена? З них виросли перші прізвища</h3>
+            <div class="pill-list" id="nameToSurname"></div>
+        </article>
+
+        <!-- 2 -->
+        <article class="story-block reveal" id="b2">
+            <div class="block-head"><span class="block-num">2</span><h2>Від імені до прізвища</h2></div>
+            <p class="block-kicker">Як і коли прізвище стало спадковим?</p>
+            <p class="block-lead">Перехід відбувався у XV–XVII століттях. Рухайте повзунок і дивіться, як змінюється доля прізвища.</p>
+            <div class="timeline">
+                <input type="range" id="stageRange" min="0" max="3" step="1" value="0" aria-label="Етап формування прізвищ">
+                <div class="timeline-ticks" id="stageTicks"></div>
+                <div class="stage" id="stageBody"></div>
+            </div>
+
+            <h3 class="subhead">Навіщо взагалі знадобилися прізвища?</h3>
+            <div id="reasonTabs"></div>
+
+            <h3 class="subhead">Які були перші прізвища?</h3>
+            <div id="firstTabs"></div>
+        </article>
+
+        <!-- 3 -->
+        <article class="story-block reveal" id="b3">
+            <div class="block-head"><span class="block-num">3</span><h2>Конструктор прізвища</h2></div>
+            <p class="block-kicker">З чого складається прізвище?</p>
+            <p class="block-lead">Прізвище має корінь (ім’я, професія, місцевість) і суфікс, що вказує на рід чи походження. Оберіть корінь і суфікс та подивіться, що вийде. Не всі поєднання існують — і це теж цікаво.</p>
+            <div class="builder">
+                <div class="builder-col">
+                    <h3>1. Корінь</h3>
+                    <div class="chips" id="rootChips"></div>
+                </div>
+                <div class="builder-col">
+                    <h3>2. Суфікс</h3>
+                    <div class="chips" id="suffixChips"></div>
+                </div>
+            </div>
+            <div class="formula" id="formula" aria-live="polite"></div>
+            <div class="suffix-info" id="suffixInfo"></div>
+        </article>
+
+        <!-- 4 -->
+        <article class="story-block reveal" id="b4">
+            <div class="block-head"><span class="block-num">4</span><h2>Суфікси на карті</h2></div>
+            <p class="block-kicker">Чи залежить закінчення прізвища від регіону?</p>
+            <p class="block-lead">Різні суфікси мають свою географію: на Лівобережжі частіше зустрічаються прізвища на -енко, а на Заході та Правобережжі — на -ук, -чук, -юк. Оберіть суфікс — чим насиченіший колір області, тим більша частка таких прізвищ серед топ-100.</p>
+            <div class="map-layout">
+                <div class="map-controls" id="mapChips"></div>
+                <div class="map-stage">
+                    <div class="suffix-map">
+                        <object id="suffixMap" type="image/svg+xml" data="images/ukraine.svg" aria-label="Карта України із частками суфіксів"></object>
+                    </div>
+                    <div class="map-readout" id="mapReadout">Наведіть курсор на область</div>
+                    <div class="map-legend"><span>менше</span><div class="legend-bar" id="legendBar"></div><span>більше</span></div>
+                </div>
+            </div>
+            <div class="suffix-info" id="mapSuffixInfo"></div>
+            <p class="small-note">Карта ілюструє закономірності суфіксів на основі моделі розподілу, а не переписних даних: «Рідні» не публікує числа по областях.</p>
+        </article>
+
+        <!-- 5 -->
+        <article class="story-block reveal" id="b5">
+            <div class="block-head"><span class="block-num">5</span><h2>Як історія змінювала прізвища</h2></div>
+            <p class="block-kicker">Що сталося з прізвищами під чужою владою?</p>
+            <p class="block-lead">Історичні події відбивалися на прізвищах: їх «пристосовували» до мови тих, хто керував українськими землями. Оберіть епоху.</p>
+            <div id="epochTabs"></div>
+        </article>
+
+        <!-- 6 -->
+        <article class="story-block reveal" id="b6">
+            <div class="block-head"><span class="block-num">6</span><h2>Прізвища-образи</h2></div>
+            <p class="block-kicker">Тварини, рослини, пісні й навіть горщики</p>
+            <p class="block-lead">Не всі прізвища походять від імен чи професій. Частина виникла з образних, жартівливих або поетичних джерел: назв тварин, рослин, предметів побуту, пісень і народних висловів. Оберіть групу, а потім клікніть на прізвище.</p>
+            <div class="chips" id="tileCats"></div>
+            <div class="tile-grid" id="tileGrid"></div>
+            <div class="tile-detail" id="tileDetail" aria-live="polite"></div>
+        </article>
+
+        <!-- 7 -->
+        <article class="story-block reveal" id="b7">
+            <div class="block-head"><span class="block-num">7</span><h2>Прізвища сьогодні</h2></div>
+            <p class="block-kicker">Що з нашими прізвищами відбувається просто зараз?</p>
+            <div class="modern-grid" id="modernGrid"></div>
+
+            <h3 class="subhead">Перевірте себе</h3>
+            <div class="quiz" id="quiz"></div>
+        </article>
+
+        <section class="story-block cta-card reveal">
+            <h2>А тепер — порівняння з реальним класом</h2>
+            <p>Чи схожі прізвища ліцеїстів на прізвища всієї України?</p>
+            <a class="btn" href="compare.html">Перейти до порівняння</a>
+        </section>
+    </main>
+
+    <script src="data/surnames-data.js"></script>
+    <script src="data/region-names.js"></script>
+    <script src="theme.js"></script>
+    <script src="history.js"></script>
+</body>
+</html>
