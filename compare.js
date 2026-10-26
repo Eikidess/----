@@ -397,50 +397,6 @@
             </div>`).join("");
     }
 
-    /* ---------- висновки ---------- */
-
-    function initInsights() {
-        const insights = [];
-
-        let biggest = null;
-        CATEGORIES.forEach((category) => {
-            const lyceumShare = lyceumByCategory[category.id] / lyceumUkrainian;
-            const ukraineShare = ukraineByCategory[category.id] / ukraine.length;
-            const diff = lyceumShare - ukraineShare;
-            if (!biggest || Math.abs(diff) > Math.abs(biggest.diff)) {
-                biggest = { category, lyceumShare, ukraineShare, diff };
-            }
-        });
-        insights.push(
-            `Найбільша різниця — у групі «${biggest.category.label.toLowerCase()}»: у ліцеї таких прізвищ ${formatPercent(biggest.lyceumShare)}%, а в топ-100 України — ${formatPercent(biggest.ukraineShare)}% (у ліцеї їх ${biggest.diff > 0 ? "більше" : "менше"}).`
-        );
-
-        const topOf = (counts, total) => CATEGORIES
-            .map((category) => ({ category, share: counts[category.id] / total }))
-            .sort((a, b) => b.share - a.share)[0];
-        const lyceumTop = topOf(lyceumByCategory, lyceumUkrainian);
-        const ukraineTop = topOf(ukraineByCategory, ukraine.length);
-        insights.push(lyceumTop.category.id === ukraineTop.category.id
-            ? `І в ліцеї, і в Україні найчисленніша група — «${lyceumTop.category.label.toLowerCase()}»: ${formatPercent(lyceumTop.share)}% і ${formatPercent(ukraineTop.share)}% відповідно.`
-            : `Лідери відрізняються: у ліцеї найчисленніша група — «${lyceumTop.category.label.toLowerCase()}» (${formatPercent(lyceumTop.share)}%), а в Україні — «${ukraineTop.category.label.toLowerCase()}» (${formatPercent(ukraineTop.share)}%).`);
-
-        const lyceumTotal = Object.values(lyceumSuffix).reduce((sum, value) => sum + value, 0);
-        const ukraineTotal = Object.values(ukraineSuffix).reduce((sum, value) => sum + value, 0);
-        insights.push(
-            `Закінчення -енко мають ${formatPercent(lyceumSuffix.enko / lyceumTotal)}% українських прізвищ ліцею та ${formatPercent(ukraineSuffix.enko / ukraineTotal)}% прізвищ топ-100 України.`
-        );
-
-        insights.push(
-            `${formatPercent(lyceumForeign / lyceumRows)}% прізвищ у таблицях класів мають неукраїнське походження — це відбиток міграційних процесів і міжкультурних контактів, про які йдеться в курсовій.`
-        );
-
-        $("#insights").innerHTML = insights.map((text) => `<li>${text}</li>`).join("");
-        $("#methodNote").innerHTML =
-            "<b>Як ми порівнювали.</b> Топ-100 — це найпоширеніші прізвища, тому серед них менше рідкісних «прізвиськ», ніж у шкільній вибірці, яка відображає повну різноманітність. " +
-            "Вибірка ліцею невелика (" + lyceumUkrainian + " українських прізвищ), тож відмінності слід читати як ілюстрацію, а не як статистичний висновок. " +
-            "Групи України зіставлено з категоріями курсової: від імен (патроніми й антропоніми), від прізвиськ (характеристики й апелятиви), від місцевості (етноніми й мікроетноніми).";
-    }
-
     /* ---------- поява та анімації ---------- */
 
     function initScrollEffects() {
@@ -489,6 +445,5 @@
     initDonut();
     initSuffixChart();
     initMatches();
-    initInsights();
     initScrollEffects();
 })();

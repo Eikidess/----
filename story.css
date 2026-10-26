@@ -60,30 +60,15 @@ html {
 }
 
 .story-hero h2 {
-    margin: 0 0 10px;
+    margin: 0;
     font-size: 2rem;
 }
 
 .story-hero p {
-    margin: 0;
+    margin: 12px 0 0;
     max-width: 64ch;
     line-height: 1.65;
     opacity: 0.95;
-}
-
-.hero-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 18px;
-}
-
-.hero-badge {
-    padding: 6px 14px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.16);
-    font-weight: 600;
-    font-size: 0.9rem;
 }
 
 /* ---------- sticky step navigation ---------- */
@@ -898,21 +883,6 @@ html {
     color: var(--heading-strong);
 }
 
-.cta-card {
-    text-align: center;
-    padding: 28px;
-}
-
-.cta-card h2 {
-    margin: 0 0 8px;
-    color: var(--heading-strong);
-}
-
-.cta-card p {
-    margin: 0 0 16px;
-    color: var(--text-secondary);
-}
-
 /* ---------- compare page ---------- */
 
 .kpi-grid {
@@ -1157,22 +1127,6 @@ button.legend-item {
 
 .match small {
     color: var(--text-secondary);
-}
-
-.insights {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: grid;
-    gap: 10px;
-}
-
-.insights li {
-    padding: 14px 16px;
-    border-radius: 14px;
-    background: var(--surface-2);
-    border-left: 4px solid var(--accent);
-    line-height: 1.6;
 }
 
 /* ---------- responsive ---------- */
