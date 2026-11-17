@@ -995,15 +995,10 @@ button.legend-item {
 
 .stack-row {
     display: grid;
-    grid-template-columns: 56px 1fr 42px;
+    grid-template-columns: 1fr 42px;
     align-items: center;
     gap: 12px;
     margin-bottom: 12px;
-}
-
-.stack-name {
-    font-weight: 800;
-    color: var(--heading-strong);
 }
 
 .stack-bar {

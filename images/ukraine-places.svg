@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice">
+    <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#4f8fd0"/>
+            <stop offset="0.55" stop-color="#a9d3f0"/>
+            <stop offset="1" stop-color="#fff0b8"/>
+        </linearGradient>
+        <linearGradient id="field" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#f6cf4a"/>
+            <stop offset="1" stop-color="#d99a12"/>
+        </linearGradient>
+        <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#fff1a0"/>
+            <stop offset="0.5" stop-color="#f5c518"/>
+            <stop offset="1" stop-color="#b8860b"/>
+        </linearGradient>
+        <radialGradient id="sun">
+            <stop offset="0" stop-color="#fffbe0" stop-opacity="0.95"/>
+            <stop offset="1" stop-color="#fff3b0" stop-opacity="0"/>
+        </radialGradient>
+
+        <g id="plant">
+            <path d="M0 22 L0 220" stroke="#4f8a2e" stroke-width="8" fill="none"/>
+            <ellipse cx="-22" cy="90" rx="26" ry="11" fill="#5e9a38" transform="rotate(-28 -22 90)"/>
+            <ellipse cx="22" cy="140" rx="26" ry="11" fill="#5e9a38" transform="rotate(28 22 140)"/>
+            <g fill="#f7b500">
+                <ellipse cx="0" cy="-30" rx="9" ry="20"/>
+                <ellipse cx="0" cy="-30" rx="9" ry="20" transform="rotate(26)"/>
+                <ellipse cx="0" cy="-30" rx="9" ry="20" transform="rotate(51)"/>
+                <ellipse cx="0" cy="-30" rx="9" ry="20" transform="rotate(77)"/>
+                <ellipse cx="0" cy="-30" rx="9" ry="20" transform="rotate(103)"/>
+                <ellipse cx="0" cy="-30" rx="9" ry="20" transform="rotate(129)"/>
+                <ellipse cx="0" cy="-30" rx="9" ry="20" transform="rotate(154)"/>
+                <ellipse cx="0" cy="-30" rx="9" ry="20" transform="rotate(180)"/>
+                <ellipse cx="0" cy="-30" rx="9" ry="20" transform="rotate(206)"/>
+                <ellipse cx="0" cy="-30" rx="9" ry="20" transform="rotate(231)"/>
+                <ellipse cx="0" cy="-30" rx="9" ry="20" transform="rotate(257)"/>
+                <ellipse cx="0" cy="-30" rx="9" ry="20" transform="rotate(283)"/>
+                <ellipse cx="0" cy="-30" rx="9" ry="20" transform="rotate(309)"/>
+                <ellipse cx="0" cy="-30" rx="9" ry="20" transform="rotate(334)"/>
+            </g>
+            <circle r="19" fill="#5b3a1e"/>
+            <circle r="12" fill="#3d2511"/>
+        </g>
+
+        <g id="blade">
+            <path d="M0 0 L0 -108" stroke="#4a2f18" stroke-width="6" fill="none"/>
+            <rect x="-15" y="-104" width="30" height="72" fill="#ecdcb4" stroke="#4a2f18" stroke-width="2"/>
+            <path d="M-15 -80 H15 M-15 -56 H15 M0 -104 V-32" stroke="#4a2f18" stroke-width="2" fill="none"/>
+        </g>
+    </defs>
+
+    <!-- небо -->
+    <rect width="1600" height="900" fill="url(#sky)"/>
+    <circle cx="1290" cy="170" r="190" fill="url(#sun)"/>
+    <circle cx="1290" cy="170" r="62" fill="#fff6c2"/>
+    <g fill="#ffffff" opacity="0.85">
+        <ellipse cx="300" cy="150" rx="92" ry="26"/>
+        <ellipse cx="362" cy="134" rx="60" ry="28"/>
+        <ellipse cx="248" cy="140" rx="52" ry="20"/>
+        <ellipse cx="820" cy="95" rx="100" ry="24"/>
+        <ellipse cx="880" cy="80" rx="62" ry="26"/>
+        <ellipse cx="1010" cy="235" rx="80" ry="20"/>
+        <ellipse cx="1060" cy="222" rx="50" ry="22"/>
+    </g>
+
+    <!-- Карпати -->
+    <polygon fill="#8fb3c9" points="0,600 90,500 180,560 290,440 400,540 520,470 640,560 760,500 880,580 1000,520 1120,590 1240,540 1360,600 1480,550 1600,590 1600,720 0,720"/>
+    <polygon fill="#5f8aa6" points="0,640 150,520 260,590 380,470 480,560 600,430 700,540 820,600 960,500 1100,590 1230,520 1380,620 1500,570 1600,620 1600,740 0,740"/>
+    <g fill="#ffffff" opacity="0.95">
+        <polygon points="600,430 575,468 592,460 600,476 612,458 628,470"/>
+        <polygon points="380,470 362,495 375,490 382,500 392,488 402,497"/>
+        <polygon points="960,500 942,524 955,519 962,529 972,517 982,526"/>
+    </g>
+
+    <!-- пагорби -->
+    <path fill="#6f9c4a" d="M0 700 C250 650 450 700 700 680 C950 660 1200 720 1600 670 L1600 900 L0 900Z"/>
+    <path fill="#8fb85a" d="M0 765 C300 725 600 775 900 750 C1200 725 1400 765 1600 740 L1600 900 L0 900Z"/>
+
+    <!-- собор із золотими банями -->
+    <g>
+        <rect x="270" y="640" width="190" height="98" fill="#f7f2e6" stroke="#d9cfb8" stroke-width="2"/>
+        <rect x="235" y="676" width="40" height="62" fill="#efe8d6" stroke="#d9cfb8" stroke-width="2"/>
+        <rect x="455" y="676" width="40" height="62" fill="#efe8d6" stroke="#d9cfb8" stroke-width="2"/>
+
+        <rect x="340" y="594" width="50" height="50" fill="#f7f2e6" stroke="#d9cfb8" stroke-width="2"/>
+        <rect x="349" y="606" width="9" height="24" rx="4" fill="#9bb2c4"/>
+        <rect x="372" y="606" width="9" height="24" rx="4" fill="#9bb2c4"/>
+        <ellipse cx="365" cy="588" rx="34" ry="42" fill="url(#gold)"/>
+        <path d="M365 548 V518 M356 530 H374" stroke="#d9a90f" stroke-width="4" fill="none"/>
+
+        <rect x="276" y="616" width="28" height="26" fill="#f7f2e6" stroke="#d9cfb8" stroke-width="2"/>
+        <ellipse cx="290" cy="612" rx="21" ry="27" fill="url(#gold)"/>
+        <path d="M290 585 V570 M284 577 H296" stroke="#d9a90f" stroke-width="3" fill="none"/>
+
+        <rect x="426" y="616" width="28" height="26" fill="#f7f2e6" stroke="#d9cfb8" stroke-width="2"/>
+        <ellipse cx="440" cy="612" rx="21" ry="27" fill="url(#gold)"/>
+        <path d="M440 585 V570 M434 577 H446" stroke="#d9a90f" stroke-width="3" fill="none"/>
+
+        <rect x="500" y="570" width="36" height="168" fill="#f7f2e6" stroke="#d9cfb8" stroke-width="2"/>
+        <rect x="510" y="590" width="9" height="26" rx="4" fill="#9bb2c4"/>
+        <rect x="524" y="590" width="9" height="26" rx="4" fill="#9bb2c4"/>
+        <ellipse cx="518" cy="560" rx="25" ry="36" fill="url(#gold)"/>
+        <path d="M518 525 V504 M511 513 H525" stroke="#d9a90f" stroke-width="3" fill="none"/>
+
+        <g fill="#9bb2c4">
+            <rect x="288" y="684" width="14" height="32" rx="7"/>
+            <rect x="318" y="684" width="14" height="32" rx="7"/>
+            <rect x="398" y="684" width="14" height="32" rx="7"/>
+            <rect x="428" y="684" width="14" height="32" rx="7"/>
+        </g>
+        <rect x="348" y="690" width="34" height="48" rx="17" fill="#8aa1b3"/>
+    </g>
+
+    <!-- вітряк -->
+    <g>
+        <polygon points="1205,745 1275,745 1258,622 1222,622" fill="#9a6a3a" stroke="#6b4423" stroke-width="3"/>
+        <polygon points="1212,622 1268,622 1240,578" fill="#5b3a1e"/>
+        <rect x="1230" y="708" width="20" height="37" fill="#4a2f18"/>
+        <g transform="translate(1240 600) rotate(14)">
+            <use href="#blade"/>
+            <use href="#blade" transform="rotate(90)"/>
+            <use href="#blade" transform="rotate(180)"/>
+            <use href="#blade" transform="rotate(270)"/>
+            <circle r="9" fill="#4a2f18"/>
+        </g>
+    </g>
+
+    <!-- пшеничне поле -->
+    <rect y="795" width="1600" height="105" fill="url(#field)"/>
+    <g stroke="#c58a0a" stroke-width="3" fill="none" opacity="0.5">
+        <path d="M0 812 Q400 796 800 812 T1600 806"/>
+        <path d="M0 840 Q400 824 800 840 T1600 834"/>
+        <path d="M0 870 Q400 854 800 870 T1600 864"/>
+    </g>
+
+    <!-- соняшники -->
+    <use href="#plant" transform="translate(80 765) scale(1.1)"/>
+    <use href="#plant" transform="translate(215 795) scale(0.9)"/>
+    <use href="#plant" transform="translate(560 780) scale(1)"/>
+    <use href="#plant" transform="translate(700 805) scale(0.85)"/>
+    <use href="#plant" transform="translate(900 772) scale(1.05)"/>
+    <use href="#plant" transform="translate(1050 808) scale(0.9)"/>
+    <use href="#plant" transform="translate(1390 778) scale(1.1)"/>
+    <use href="#plant" transform="translate(1505 802) scale(0.95)"/>
+    <use href="#plant" transform="translate(1565 748) scale(0.8)"/>
+    <use href="#plant" transform="translate(30 835) scale(0.75)"/>
+</svg>

@@ -1,0 +1,185 @@
+/* Сторінка пошуку: рядок пошуку по центру на напівпрозорому тлі з місцями України. */
+
+.search-page {
+    position: relative;
+    min-height: 100vh;
+}
+
+.search-page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: url("images/ukraine-places.svg") center bottom / cover no-repeat;
+    opacity: 0.32;
+    pointer-events: none;
+}
+
+:root[data-theme="dark"] .search-page::before {
+    opacity: 0.2;
+    filter: saturate(0.75) brightness(0.8);
+}
+
+.finder-wrap {
+    box-sizing: border-box;
+    min-height: calc(100vh - 141px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 40px 20px 56px;
+}
+
+.finder {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: min(700px, 100%);
+}
+
+.finder .search-input-wrap {
+    min-width: 0;
+}
+
+.finder-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 18px 26px;
+    border: 1px solid var(--input-border);
+    border-radius: 999px;
+    background: var(--input-bg);
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    outline: none;
+    box-shadow: 0 14px 38px var(--card-shadow);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+}
+
+.finder-input::placeholder {
+    color: var(--input-placeholder);
+}
+
+.finder-input:focus {
+    border-color: var(--input-focus-border);
+    box-shadow: 0 0 0 4px var(--input-focus-shadow), 0 14px 38px var(--card-shadow);
+}
+
+.finder-btn {
+    flex-shrink: 0;
+    width: 62px;
+    height: 62px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 50%;
+    background: linear-gradient(90deg, var(--button-grad-start) 0%, var(--button-grad-end) 100%);
+    color: var(--button-text);
+    cursor: pointer;
+    box-shadow: 0 14px 30px var(--button-shadow-hover);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.finder-btn:hover {
+    transform: translateY(-2px);
+}
+
+.finder-btn:focus-visible {
+    outline: 3px solid var(--input-focus-border);
+    outline-offset: 3px;
+}
+
+.finder .suggestions-list {
+    top: calc(100% + 8px);
+    max-height: 380px;
+    border-radius: 18px;
+}
+
+.suggestions-list li.active {
+    background: var(--insight-bg);
+}
+
+.finder-msg {
+    min-height: 1.4em;
+    margin: 0;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.finder-links {
+    width: min(900px, 100%);
+    margin-top: 48px;
+    text-align: center;
+}
+
+.finder-hint {
+    margin: 0 0 14px;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+.finder-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+}
+
+.finder-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 18px 20px;
+    border-radius: 18px;
+    border: 1px solid var(--input-border);
+    background: color-mix(in srgb, var(--card-bg) 72%, transparent);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    color: var(--text-primary);
+    text-align: left;
+    text-decoration: none;
+    box-shadow: 0 10px 28px var(--card-shadow);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.finder-card strong {
+    font-size: 1.1rem;
+    color: var(--heading-strong);
+}
+
+.finder-card span {
+    font-size: 0.92rem;
+    line-height: 1.45;
+    color: var(--text-secondary);
+}
+
+.finder-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--input-focus-border);
+    box-shadow: 0 16px 34px var(--card-shadow);
+}
+
+.finder-card:focus-visible {
+    outline: 3px solid var(--input-focus-border);
+    outline-offset: 3px;
+}
+
+@media (max-width: 520px) {
+    .finder-input {
+        padding: 15px 20px;
+        font-size: 1.05rem;
+    }
+
+    .finder-btn {
+        width: 54px;
+        height: 54px;
+    }
+
+    .finder-links {
+        margin-top: 32px;
+    }
+}

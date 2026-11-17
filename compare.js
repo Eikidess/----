@@ -94,7 +94,7 @@
             classItem.groups[category.id].forEach((name) => {
                 const found = ukraineIndex.get(name.toLowerCase());
                 if (found) {
-                    matches.push({ name, className: classItem.id, category, rank: found.rank, count: found.count });
+                    matches.push({ name, category, rank: found.rank, count: found.count });
                 }
             });
         });
@@ -169,7 +169,7 @@
 
     function initKpis() {
         const items = [
-            { value: lyceumRows, decimals: 0, label: "прізвищ ліцеїстів у таблицях (4 класи)" },
+            { value: lyceumRows, decimals: 0, label: "прізвищ розібрано в курсовій роботі" },
             { value: (lyceumUkrainian / lyceumRows) * 100, decimals: 1, suffix: "%", label: `мають українське походження (${lyceumUkrainian})` },
             { value: (lyceumForeign / lyceumRows) * 100, decimals: 1, suffix: "%", label: `іншомовні (${lyceumForeign})` },
             { value: matches.length, decimals: 0, label: "українських прізвищ ліцею входять до топ-100 України" }
@@ -238,7 +238,7 @@
         $("#catChart").innerHTML = renderBarRows(rows);
     }
 
-    /* ---------- діаграма 2: клас за класом ---------- */
+    /* ---------- діаграма 2: склад вибірки ---------- */
 
     function initStackChart() {
         const legendHost = $("#stackLegend");
@@ -247,30 +247,30 @@
         const allCategories = CATEGORIES.concat([FOREIGN]);
         let dimmed = null;
 
+        const sampleNames = {};
+        CATEGORIES.forEach((category) => {
+            sampleNames[category.id] = classes.reduce((all, item) => all.concat(item.groups[category.id]), []);
+        });
+
         legendHost.innerHTML = allCategories
             .map((category) => `<button type="button" class="legend-item" data-cat="${category.id}" style="--swatch:${category.color}"><i></i>${category.label}</button>`)
             .join("");
 
-        chart.innerHTML = classes.map((classItem) => {
-            const ukrainianCount = CATEGORIES.reduce((sum, category) => sum + classItem.groups[category.id].length, 0);
-            const foreignCount = classItem.rows - ukrainianCount;
-            const segments = CATEGORIES
-                .map((category) => ({ category, count: classItem.groups[category.id].length }))
-                .concat([{ category: FOREIGN, count: foreignCount }])
-                .filter((segment) => segment.count > 0);
+        const segments = CATEGORIES
+            .map((category) => ({ category, count: sampleNames[category.id].length }))
+            .concat([{ category: FOREIGN, count: lyceumForeign }])
+            .filter((segment) => segment.count > 0);
 
-            return `
-                <div class="stack-row">
-                    <span class="stack-name">${classItem.id}</span>
-                    <div class="stack-bar">
-                        ${segments.map((segment) => `
-                            <button type="button" class="seg" data-class="${classItem.id}" data-cat="${segment.category.id}"
-                                style="--w:${((segment.count / classItem.rows) * 100).toFixed(2)}%;--swatch:${segment.category.color}"
-                                title="${segment.category.label}: ${segment.count}">${segment.count}</button>`).join("")}
-                    </div>
-                    <span class="stack-total">${classItem.rows}</span>
-                </div>`;
-        }).join("");
+        chart.innerHTML = `
+            <div class="stack-row">
+                <div class="stack-bar">
+                    ${segments.map((segment) => `
+                        <button type="button" class="seg" data-cat="${segment.category.id}"
+                            style="--w:${((segment.count / lyceumRows) * 100).toFixed(2)}%;--swatch:${segment.category.color}"
+                            title="${segment.category.label}: ${segment.count}">${segment.count}</button>`).join("")}
+                </div>
+                <span class="stack-total">${lyceumRows}</span>
+            </div>`;
 
         function applyDim() {
             $$(".stack-bar", chart).forEach((bar) => {
@@ -292,21 +292,19 @@
             if (!segment) {
                 return;
             }
-            const classItem = classes.find((item) => item.id === segment.dataset.class);
             const categoryId = segment.dataset.cat;
 
             if (categoryId === FOREIGN.id) {
-                const ukrainianCount = CATEGORIES.reduce((sum, category) => sum + classItem.groups[category.id].length, 0);
                 panel.innerHTML = `
-                    <h3>${classItem.id} · ${FOREIGN.label}</h3>
-                    <p>${classItem.rows - ukrainianCount} прізвищ мають неукраїнське походження. Приклади з таблиць курсової: ${lyceum.foreignExamples.join(", ")}.</p>`;
+                    <h3>${FOREIGN.label} (${lyceumForeign})</h3>
+                    <p>Ці прізвища мають неукраїнське походження. Приклади з курсової роботи: ${lyceum.foreignExamples.join(", ")}.</p>`;
                 return;
             }
 
             const category = CATEGORIES.find((item) => item.id === categoryId);
-            const names = classItem.groups[categoryId];
+            const names = sampleNames[categoryId];
             panel.innerHTML = `
-                <h3>${classItem.id} · ${category.label} (${names.length})</h3>
+                <h3>${category.label} (${names.length})</h3>
                 <div class="pill-list">
                     ${names.map((name) => {
                         const found = ukraineIndex.get(name.toLowerCase());
@@ -335,12 +333,6 @@
                 <div class="legend">
                     <span class="legend-item" style="--swatch:var(--c-ly)"><i></i>Українського походження: ${lyceumUkrainian}</span>
                     <span class="legend-item" style="--swatch:var(--c-foreign)"><i></i>Іншомовні: ${lyceumForeign}</span>
-                </div>
-                <div class="pill-list">
-                    ${classes.map((item) => {
-                        const ukrainianCount = CATEGORIES.reduce((sum, category) => sum + item.groups[category.id].length, 0);
-                        return `<span class="pill">${item.id}: ${ukrainianCount} із ${item.rows} <small>(${formatPercent(ukrainianCount / item.rows)}%)</small></span>`;
-                    }).join("")}
                 </div>
             </div>`;
 
@@ -388,12 +380,12 @@
     function initMatches() {
         const share = matches.length / lyceumUkrainian;
         $("#matchLead").textContent =
-            `${matches.length} із ${lyceumUkrainian} українських прізвищ ліцеїстів (${formatPercent(share)}%) входять до сотні найпоширеніших прізвищ України. Біля кожного — клас, місце в рейтингу та кількість носіїв.`;
+            `${matches.length} із ${lyceumUkrainian} українських прізвищ ліцеїстів (${formatPercent(share)}%) входять до сотні найпоширеніших прізвищ України. Біля кожного — місце в рейтингу та кількість носіїв.`;
 
         $("#matchCloud").innerHTML = matches.map((match, i) => `
             <div class="match" style="animation-delay:${i * 0.04}s">
                 <b>${match.name}</b>
-                <small>${match.className} · №${match.rank} · ${formatNumber(match.count)}</small>
+                <small>№${match.rank} · ${formatNumber(match.count)}</small>
             </div>`).join("");
     }
 

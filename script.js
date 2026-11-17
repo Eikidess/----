@@ -40,6 +40,8 @@ let regions = [];
 let currentResult = null;
 let currentRegionView = null;
 let regionInsightEl = null;
+// Прізвище, передане зі сторінки пошуку (index.html?q=...); виконується, коли карта готова.
+let pendingQuery = new URLSearchParams(window.location.search).get("q");
 
 function getIdleHeading() {
     if (currentResult) {
@@ -403,6 +405,12 @@ function initializeMap() {
 
     regions.forEach(bindRegionEvents);
     applyMapTheme();
+
+    if (pendingQuery && regions.length > 0) {
+        inputEl.value = pendingQuery;
+        pendingQuery = null;
+        searchSurname();
+    }
 }
 
 function initializeData() {
